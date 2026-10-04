@@ -36,6 +36,8 @@ header.top a.l:hover{color:var(--ink)}
 .acts,.pills{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
 .pills{gap:8px;margin-top:28px}
 .pills span{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:5px 15px;font-size:14px;color:var(--mute)}
+.cnt{margin:22px 0 0;font-size:15px;color:var(--mute);min-height:1.65em}
+.cnt b{color:var(--ink);font-weight:700}
 .bar{height:6px;border-radius:3px;background:var(--line);margin:20px auto 0;max-width:360px;overflow:hidden;display:none}
 .bar b{display:block;height:100%;width:0;background:var(--amber);transition:width .1s}
 .stage{position:relative;margin-top:60px;height:420px;overflow:hidden;display:flex;justify-content:center;-webkit-mask-image:linear-gradient(#000 65%,transparent);mask-image:linear-gradient(#000 65%,transparent)}
@@ -145,7 +147,7 @@ header.top .wrap{position:relative;gap:8px}
 <header class="top"><div class="wrap">
   <a class="logo" href="#"><svg class="lg" viewBox="0 0 48 34" aria-hidden="true"><rect width="48" height="34" rx="10" fill="#e5233f"/><path d="M19 9.5v15l13-7.5z" fill="#fff" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/></svg> Yargı Tube</a>
   <nav class="nv" id="nv" aria-label="Sayfa bölümleri">
-    <a href="#ozellikler">Özellikler</a><a href="#ekran">Görüntüler</a><a href="#kurulum">Kurulum</a><a href="#surum">Sürümler</a><a href="#sss">Sorular</a><a href="#uygulamalar">Uygulamalar</a><a href="#sosyal">Sosyal medya</a>
+    <a href="#ozellikler">Özellikler</a><a href="#ekran">Görüntüler</a><a href="#uygulamalar">Uygulamalar</a><a href="#kurulum">Kurulum</a><a href="#surum">Sürümler</a><a href="#sss">Sorular</a><a href="#sosyal">Sosyal medya</a>
   </nav>
   <button class="ic" id="theme" type="button" aria-label="Temayı değiştir">◐</button>
   <button class="btn sm dl hd" type="button">İndir</button>
@@ -161,6 +163,7 @@ header.top .wrap{position:relative;gap:8px}
       <button class="btn dl" id="dl" type="button"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13m0 0l-5-5m5 5l5-5M4 21h16"/></svg>APK'yı indir</button>
       <a class="btn ghost" href="#kurulum">Nasıl kurulur?</a>
     </div>
+    <p class="cnt" id="cnt" aria-live="polite"></p>
     <div class="bar" id="bar"><b id="fill"></b></div>
     <div class="pills"><span>Ücretsiz</span><span>Reklamsız</span><span>Sürüm <span id="ver" style="border:0;padding:0"></span></span><span>Android 8.0+</span><span>Android TV</span><span id="size" style="padding:5px 14px"></span></div>
   </div>
@@ -185,6 +188,22 @@ header.top .wrap{position:relative;gap:8px}
   <h2>Uygulamadan görüntüler</h2>
   <p class="sub">Büyütmek için görsele dokunun.</p>
   <div class="shots" id="shots"></div>
+</section>
+
+<section id="uygulamalar">
+  <h2>Diğer uygulamalarımıza göz atın</h2>
+  <p class="sub" id="appsub">Bir uygulamaya dokunun, ekran görüntülerini görün ve APK'sını indirin.</p>
+  <div class="grid" id="apps"></div>
+  <div class="card dev">
+    <div><h3>Yargı Tube için neler geliştirebiliriz?</h3><p>Görmek istediğiniz özellikleri, bulduğunuz hataları ya da yeni uygulama fikirlerinizi yazın. Mesajınız doğrudan geliştiriciye ulaşır.</p></div>
+    <div class="dv">
+      <input id="dn" type="text" placeholder="Adınız" autocomplete="name" aria-label="Adınız">
+      <input id="de" type="email" placeholder="E-posta (dönüş için, isteğe bağlı)" autocomplete="email" aria-label="E-posta">
+      <input id="dh" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+      <textarea id="dm" rows="4" placeholder="Yargı Tube için neler geliştirebiliriz? Önerilerinizi yazın..." aria-label="Mesajınız"></textarea>
+      <button class="btn" id="dsend" type="button">Mesaj gönder</button>
+    </div>
+  </div>
 </section>
 
 <section id="kurulum">
@@ -224,23 +243,6 @@ header.top .wrap{position:relative;gap:8px}
   <details><summary>Bir sorun yaşarsam kime ulaşabilirim?</summary><p>Aşağıdaki sosyal medya hesaplarımızdan mesaj atabilirsiniz.</p></details>
 </section>
 
-<section id="uygulamalar">
-  <h2>Diğer uygulamalarımıza göz atın</h2>
-  <p class="sub" id="appsub">Bir uygulamaya dokunun, ekran görüntülerini görün ve APK'sını indirin.</p>
-  <div class="grid" id="apps"></div>
-  <div class="card dev">
-    <div><h3>Yargı Tube için neler geliştirebiliriz?</h3><p>Görmek istediğiniz özellikleri, bulduğunuz hataları ya da yeni uygulama fikirlerinizi yazın. Mesajınız doğrudan geliştiriciye ulaşır.</p></div>
-    <div class="dv">
-      <input id="dn" type="text" placeholder="Adınız" autocomplete="name" aria-label="Adınız">
-      <input id="de" type="email" placeholder="E-posta (dönüş için, isteğe bağlı)" autocomplete="email" aria-label="E-posta">
-      <input id="dh" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
-      <textarea id="dm" rows="4" placeholder="Yargı Tube için neler geliştirebiliriz? Önerilerinizi yazın..." aria-label="Mesajınız"></textarea>
-      <button class="btn" id="dsend" type="button">Mesaj gönder</button>
-    </div>
-  </div>
-</section>
-
-
 
 <div class="cta">
   <h2>Hazırsanız başlayalım.</h2>
@@ -262,14 +264,14 @@ header.top .wrap{position:relative;gap:8px}
 <div class="sticky" id="sticky"><b>Yargı Tube</b><button class="btn sm dl" type="button">APK'yı indir</button></div>
 <dialog id="ad"><button class="ic x" id="adx" type="button" aria-label="Kapat">✕</button>
   <div class="ah"><span class="ai" id="aic"></span><div><h3 id="an"></h3><small id="am"></small></div></div>
-  <p id="aa"></p><div class="shots" id="ass"></div>
+  <p id="aa"></p><p class="cnt" id="acnt" style="margin:-6px 0 14px"></p><div class="shots" id="ass"></div>
   <button class="btn" id="adl" type="button">APK'yı indir</button></dialog>
 <dialog id="lb"><button class="ic" id="lbx" type="button" aria-label="Kapat">✕</button><img id="lbi" alt="Uygulama ekran görüntüsü"></dialog>
 <div id="toast" role="status" aria-live="polite"></div>
 
 <script>
 
-const APK={url:"YargiTube.apk",dosyaAdi:"YargiTube.apk",surum:"0.29.1",boyut:"18 MB"};
+const APK={url:"YargiTube.apk",dosyaAdi:"YargiTube.apk",surum:"0.29.1",boyut:"18 MB",sayac:"yargitube"};
 
 const FORM={url:"https://api.web3forms.com/submit",key:""};
 // -------------------------------------------------------
@@ -297,6 +299,30 @@ addEventListener("scroll",spy,{passive:true});addEventListener("resize",spy);spy
 /* toast + indirme */
 let tt;const toast=$("toast");
 function say(m){toast.textContent=m;toast.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove("on"),3800);}
+
+/* indirme sayacı (counterapi.dev, ücretsiz, kayıt gerektirmez) */
+const SAYAC_NS="yargih42-apk";
+const sayacUrl=k=>"https://api.counterapi.dev/v1/"+SAYAC_NS+"/"+encodeURIComponent(k);
+const sayiAl=d=>{const n=d&&(d.count??d.value??(d.data&&d.data.up_count));return typeof n==="number"?n:null;};
+const yaz=(el,n)=>{el.innerHTML=n===null?"":(n>0?`<b>${n.toLocaleString("tr-TR")}</b> kişi indirdi`:"İlk indiren siz olun");};
+async function sayacOku(k,el){
+  if(!k||!el)return;
+  try{const r=await fetch(sayacUrl(k));if(r.status===404){yaz(el,0);return;}if(!r.ok)throw 0;yaz(el,sayiAl(await r.json()));}
+  catch(e){el.textContent="";}
+}
+const sonTik={};
+async function sayacArttir(k,el){
+  if(!k)return;
+  const t=Date.now();
+  if(sonTik[k]&&t-sonTik[k]<4000)return; // art arda çift tıklamayı tek say
+  sonTik[k]=t;
+  try{
+    const r=await fetch(sayacUrl(k)+"/up");if(!r.ok)throw 0;
+    if(el)yaz(el,sayiAl(await r.json()));
+  }catch(e){}
+}
+sayacOku(APK.sayac,$("cnt"));
+
 function download(a){
   a=a||APK;
   fetch(a.url,{method:"HEAD"}).then(r=>{if(!r.ok)throw 0;start(a);}).catch(()=>say("APK dosyası bulunamadı. Dosyayı sitenin klasörüne "+a.url+" adıyla ekleyin."));
@@ -307,6 +333,8 @@ function start(a){
   const l=document.createElement("a");l.href=a.url;l.download=a.dosyaAdi||a.url;l.rel="noopener";
   document.body.appendChild(l);l.click();l.remove();
   say("İndirme başladı. Bitince İndirilenler klasörüne bakın.");
+  sayacArttir(a.sayac,a===APK?$("cnt"):$("acnt"));
+  if(a!==APK)setTimeout(()=>document.querySelectorAll(".app").forEach(c=>{if(c.dataset.k===a.sayac)sayacOku(a.sayac,c.querySelector(".ac"));}),1500);
 }
 document.querySelectorAll(".dl").forEach(b=>b.addEventListener("click",()=>download()));
 
@@ -350,12 +378,15 @@ $("lb").addEventListener("click",e=>{if(e.target===$("lb"))$("lb").close();});
 
 
 const APPS=[
+ // Yeni uygulama eklemek için bu şablonu kopyalayıp doldurun:
+ // {ad:"Uygulama Adı",acik:"Kısa açıklama",surum:"1.0.0",boyut:"12 MB",renk:200,apk:"UygulamaAdi.apk",sayac:"uygulamaadi",ekranlar:["uygulama-ekran1.jpg","uygulama-ekran2.jpg"]}
 ];
 const ikon=a=>`background:linear-gradient(135deg,hsl(${a.renk} 70% 45%),hsl(${a.renk+40} 70% 30%))`;
 if(!APPS.length){$("apps").style.display="none";$("appsub").textContent="Yeni uygulamalarımız çok yakında burada olacak.";}
 APPS.forEach(a=>{
-  const b=document.createElement("button");b.type="button";b.className="card app";
-  b.innerHTML=`<span class="ai" style="${ikon(a)}">${a.ad[0]}</span><h3>${a.ad}</h3><p>${a.acik}</p><small>Detayları gör ›</small>`;
+  const b=document.createElement("button");b.type="button";b.className="card app";b.dataset.k=a.sayac;
+  b.innerHTML=`<span class="ai" style="${ikon(a)}">${a.ad[0]}</span><h3>${a.ad}</h3><p>${a.acik}</p><p class="cnt ac" style="margin:10px 0 0;min-height:1.65em"></p><small>Detayları gör ›</small>`;
+  sayacOku(a.sayac,b.querySelector(".ac"));
   b.onclick=()=>openApp(a);$("apps").appendChild(b);
 });
 function openApp(a){
@@ -369,7 +400,8 @@ function openApp(a){
     im.onerror=()=>{sh.className="shot empty";sh.innerHTML=f+"<br>dosyasını ekleyin";};
     im.src=f;sh.appendChild(im);box.appendChild(sh);
   });
-  $("adl").onclick=()=>download({url:a.apk,dosyaAdi:a.apk});
+  $("acnt").textContent="";sayacOku(a.sayac,$("acnt"));
+  $("adl").onclick=()=>download({url:a.apk,dosyaAdi:a.apk,sayac:a.sayac});
   $("ad").showModal();
 }
 $("adx").onclick=()=>$("ad").close();
