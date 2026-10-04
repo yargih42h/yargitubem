@@ -187,7 +187,7 @@ header.top .wrap{position:relative;gap:8px}
       <a class="btn ghost" href="#kurulum">Nasıl kurulur?</a>
     </div>
     <p class="cnt" id="cnt" aria-live="polite"></p>
-    <p class="cnt" id="ozet" data-pk="yargitube" style="margin-top:4px"></p>
+    <p class="cnt" id="ozet" data-pk="yargitube-v2" style="margin-top:4px"></p>
     <div class="bar" id="bar"><b id="fill"></b></div>
     <div class="pills"><span>Ücretsiz</span><span>Reklamsız</span><span>Sürüm <span id="ver" style="border:0;padding:0"></span></span><span>Android 8.0+</span><span>Android TV</span><span id="size" style="padding:5px 14px"></span></div>
   </div>
@@ -302,7 +302,7 @@ header.top .wrap{position:relative;gap:8px}
 
 <script>
 
-const APK={url:"YargiTube.apk",dosyaAdi:"YargiTube.apk",surum:"0.29.1",boyut:"18 MB",sayac:"yargitube"};
+const APK={url:"YargiTube.apk",dosyaAdi:"YargiTube.apk",surum:"0.29.1",boyut:"18 MB",sayac:"yargitube",puan:"yargitube-v2"};
 
 const FORM={url:"https://api.web3forms.com/submit",key:""};
 // -------------------------------------------------------
@@ -329,7 +329,7 @@ addEventListener("scroll",spy,{passive:true});addEventListener("resize",spy);spy
 
 /* toast + indirme */
 let tt;const toast=$("toast");
-function say(m){toast.textContent=m;toast.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove("on"),3800);}
+function say(m){(document.querySelector("dialog[open]")||document.body).appendChild(toast);toast.textContent=m;toast.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove("on"),3800);}
 
 /* indirme sayacı (counterapi.dev, ücretsiz, kayıt gerektirmez) */
 const SAYAC_NS="yargih42-apk";
@@ -368,11 +368,20 @@ sayacOku(APK.sayac,$("cnt"));
 
 function download(a){
   a=a||APK;
-  fetch(a.url,{method:"HEAD"}).then(r=>{if(!r.ok)throw 0;start(a);}).catch(()=>say("APK dosyası bulunamadı. Dosyayı sitenin klasörüne "+a.url+" adıyla ekleyin."));
+  fetch(a.url,{method:"HEAD",cache:"no-store"}).then(r=>{
+    if(r.status===404){
+      console.error("APK bulunamadı:",a.url);
+      say(a.url+" dosyası bulunamadı. Dosyanın index.html ile aynı klasörde ve adının birebir aynı olduğundan emin olun.");
+      return;
+    }
+    start(a);
+  }).catch(()=>start(a)); // HEAD desteklenmese bile indirmeyi dene
 }
 function start(a){
-  const bar=$("bar"),fill=$("fill");bar.style.display="block";fill.style.width="0";let p=0;
-  const iv=setInterval(()=>{p+=10;fill.style.width=p+"%";if(p>=100)clearInterval(iv);},90);
+  if(a===APK){
+    const bar=$("bar"),fill=$("fill");bar.style.display="block";fill.style.width="0";let p=0;
+    const iv=setInterval(()=>{p+=10;fill.style.width=p+"%";if(p>=100)clearInterval(iv);},90);
+  }
   const l=document.createElement("a");l.href=a.url;l.download=a.dosyaAdi||a.url;l.rel="noopener";
   document.body.appendChild(l);l.click();l.remove();
   say("İndirme başladı. Bitince İndirilenler klasörüne bakın.");
@@ -421,13 +430,13 @@ $("lb").addEventListener("click",e=>{if(e.target===$("lb"))$("lb").close();});
 
 
 const APPS=[
- {ad:"Yargı Müzik",acik:"Müzik çalar uygulaması. Şarkılarınızı kolayca dinleyin.",surum:"1.0.0",boyut:"",renk:280,apk:"YargiMuzik.apk",dosyaAdi:"Yargı Müzik.apk",sayac:"yargimuzik",ekranlar:["muzik1.jpg","muzik2.jpg","muzik3.jpg","muzik4.jpg"]}
+ {ad:"Yargı Müzik",acik:"Müzik çalar uygulaması. Şarkılarınızı kolayca dinleyin.",surum:"1.0.0",boyut:"",renk:280,apk:"YargiMuzik.apk",dosyaAdi:"YargiMuzik.apk",sayac:"yargimuzik",puan:"yargimuzik-v2",ekranlar:["muzik1.jpg","muzik2.jpg","muzik3.jpg","muzik4.jpg"]}
 ];
 const ikon=a=>`background:linear-gradient(135deg,hsl(${a.renk} 70% 45%),hsl(${a.renk+40} 70% 30%))`;
 if(!APPS.length){$("apps").style.display="none";$("appsub").textContent="Yeni uygulamalarımız çok yakında burada olacak.";}
 APPS.forEach(a=>{
   const b=document.createElement("button");b.type="button";b.className="card app";b.dataset.k=a.sayac;
-  b.innerHTML=`<span class="ai" style="${ikon(a)}">${a.ad[0]}</span><h3>${a.ad}</h3><p>${a.acik}</p><p class="cnt ac" style="margin:10px 0 0;min-height:1.65em"></p><p class="cnt" data-pk="${a.sayac}" style="margin:0"></p><small>Detayları gör ›</small>`;
+  b.innerHTML=`<span class="ai" style="${ikon(a)}">${a.ad[0]}</span><h3>${a.ad}</h3><p>${a.acik}</p><p class="cnt ac" style="margin:10px 0 0;min-height:1.65em"></p><p class="cnt" data-pk="${a.puan}" style="margin:0"></p><small>Detayları gör ›</small>`;
   sayacOku(a.sayac,b.querySelector(".ac"));
   b.onclick=()=>openApp(a);$("apps").appendChild(b);
 });
@@ -442,7 +451,7 @@ function openApp(a){
     im.onerror=()=>{sh.className="shot empty";sh.innerHTML=f+"<br>dosyasını ekleyin";};
     im.src=f;sh.appendChild(im);box.appendChild(sh);
   });
-  if(window.puanKutu)puanKutu($("apuan"),a.sayac);
+  if(window.puanKutu)puanKutu($("apuan"),a.puan);
   $("acnt").textContent="";sayacOku(a.sayac,$("acnt"));
   $("adl").onclick=()=>download({url:a.apk,dosyaAdi:a.dosyaAdi||a.apk,sayac:a.sayac});
   $("ad").showModal();
@@ -580,7 +589,7 @@ async function ciz(el,key){
   }catch(e){el.innerHTML='<p class="pm">Değerlendirmeler şu an yüklenemedi.</p>';}
 }
 window.puanKutu=(el,key)=>{kutular.set(el,key);el.innerHTML='<p class="pm">Yükleniyor...</p>';ciz(el,key);};
-puanKutu($("puan"),APK.sayac);
+puanKutu($("puan"),APK.puan);
 document.querySelectorAll("[data-pk]").forEach(ozetYaz);
 })();
 </script>
