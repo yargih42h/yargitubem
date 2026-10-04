@@ -421,8 +421,7 @@ $("lb").addEventListener("click",e=>{if(e.target===$("lb"))$("lb").close();});
 
 
 const APPS=[
- // Yeni uygulama eklemek için bu şablonu kopyalayıp doldurun:
- // {ad:"Uygulama Adı",acik:"Kısa açıklama",surum:"1.0.0",boyut:"12 MB",renk:200,apk:"UygulamaAdi.apk",sayac:"uygulamaadi",ekranlar:["uygulama-ekran1.jpg","uygulama-ekran2.jpg"]}
+ {ad:"Yargı Müzik",acik:"Müzik çalar uygulaması. Şarkılarınızı kolayca dinleyin.",surum:"1.0.0",boyut:"",renk:280,apk:"YargiMuzik.apk",dosyaAdi:"Yargı Müzik.apk",sayac:"yargimuzik",ekranlar:["muzik1.jpg","muzik2.jpg","muzik3.jpg","muzik4.jpg"]}
 ];
 const ikon=a=>`background:linear-gradient(135deg,hsl(${a.renk} 70% 45%),hsl(${a.renk+40} 70% 30%))`;
 if(!APPS.length){$("apps").style.display="none";$("appsub").textContent="Yeni uygulamalarımız çok yakında burada olacak.";}
@@ -434,7 +433,7 @@ APPS.forEach(a=>{
 });
 function openApp(a){
   const ic=$("aic");ic.textContent=a.ad[0];ic.style.cssText=ikon(a);
-  $("an").textContent=a.ad;$("am").textContent="Sürüm "+a.surum+", "+a.boyut;$("aa").textContent=a.acik;
+  $("an").textContent=a.ad;$("am").textContent="Sürüm "+a.surum+(a.boyut?", "+a.boyut:"");$("aa").textContent=a.acik;
   const box=$("ass");box.innerHTML="";
   a.ekranlar.forEach((f,n)=>{
     const sh=document.createElement("button");sh.type="button";sh.className="shot";
@@ -445,7 +444,7 @@ function openApp(a){
   });
   if(window.puanKutu)puanKutu($("apuan"),a.sayac);
   $("acnt").textContent="";sayacOku(a.sayac,$("acnt"));
-  $("adl").onclick=()=>download({url:a.apk,dosyaAdi:a.apk,sayac:a.sayac});
+  $("adl").onclick=()=>download({url:a.apk,dosyaAdi:a.dosyaAdi||a.apk,sayac:a.sayac});
   $("ad").showModal();
 }
 $("adx").onclick=()=>$("ad").close();
@@ -552,7 +551,10 @@ async function ciz(el,key){
     const b=benim&&benim.exists()?benim.data():null;
     let h=`<div class="rs"><div class="rn">${o.n?o.ort.toFixed(1).replace(".",","):"–"}</div><div><div class="st" aria-hidden="true">${yildiz(o.ort)}</div><small>${o.n?o.n+" değerlendirme · %"+o.memnun+" kullanıcı memnun":"Henüz değerlendirme yok"}</small></div></div>`;
     if(!user){
-      h+='<button class="btn ghost gi" type="button">Gmail ile giriş yap ve puan ver</button><p><small>Gmail hesabınızla giriş yapmanız yeterli. Her hesap bir kez puan verir, sonradan değiştirebilir.</small></p>';
+      h+='<button class="btn ghost gi" type="button">Gmail ile giriş yap ve puan ver</button><p><small>Gmail hesabınızla giriş yapmanız yeterli. Her hesap bir kez puan verebilir.</small></p>';
+    }else if(b){
+      // Puan verildi: form kapanır. Teşekkür yalnızca gönderdiği anda görünür.
+      if(tesk.has(el))h+=`<div class="pf"><p class="tk"><b>Teşekkürler, ${esc(user.displayName||"Kullanıcı")}!</b> Değerlendirmeniz kaydedildi.</p></div>`;
     }else{
       h+=`<div class="pf">${tesk.has(el)?`<p class="tk"><b>Teşekkürler, ${esc(user.displayName||"Kullanıcı")}!</b> Değerlendirmeniz ${tesk.get(el)}.</p>`:""}<p class="me">${av(user.photoURL,user.displayName)}<span><b>${esc(user.displayName||"Kullanıcı")}</b> olarak puan veriyorsunuz. Adınız ve fotoğrafınız yorumunuzla birlikte görünür.</span></p><div class="sg" role="group" aria-label="Puanınız">${[1,2,3,4,5].map(n=>`<button type="button" data-n="${n}" aria-label="${n} yıldız">★</button>`).join("")}</div><textarea rows="3" maxlength="300" placeholder="Yorumunuz (isteğe bağlı)" aria-label="Yorumunuz">${esc(b?b.yorum:"")}</textarea><button class="btn gn" type="button">${b?"Puanımı güncelle":"Gönder"}</button></div>`;
     }
