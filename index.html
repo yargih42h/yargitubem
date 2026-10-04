@@ -140,6 +140,25 @@ header.top .wrap{position:relative;gap:8px}
 .dv small{color:var(--mute);font-size:13px}
 @media(max-width:820px){.dev{grid-template-columns:1fr;padding:24px}}
 @media(max-width:560px){.soc{gap:10px}.soc a.card{flex-direction:column;padding:18px 8px;gap:8px;text-align:center}.soc h3{font-size:15px}}
+
+.rv{padding:30px}.rv:hover{transform:none;border-color:var(--line)}
+.rs{display:flex;align-items:center;gap:18px;margin-bottom:18px}
+.rn{font:800 56px/1 "Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.03em}
+.st{color:var(--amber);letter-spacing:2px;font-size:20px;line-height:1.2}
+.rs small,.pm,.rv small{color:var(--mute);font-size:14px}
+.pm{margin:0}
+.pf{display:grid;gap:12px;margin-top:6px}
+.pf p{margin:0;color:var(--mute);font-size:14px}
+.lk{background:none;border:0;padding:0;color:var(--red);font:inherit;cursor:pointer;text-decoration:underline}
+.sg{display:flex;gap:6px}
+.sg button{width:48px;height:48px;border-radius:14px;border:1px solid var(--line);background:var(--bg);color:var(--mute);font-size:24px;cursor:pointer}
+.sg button.on{color:var(--amber);border-color:var(--amber)}
+.sg button:focus-visible,.lk:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.pf textarea{width:100%;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:13px 16px;font:inherit;resize:vertical}
+.pf textarea:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.rl{display:grid;gap:12px;margin-top:22px;border-top:1px solid var(--line);padding-top:18px}
+.ri p{margin:4px 0 0;color:var(--mute);font-size:15px}
+.ri .st{font-size:14px;margin-left:6px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -147,7 +166,7 @@ header.top .wrap{position:relative;gap:8px}
 <header class="top"><div class="wrap">
   <a class="logo" href="#"><svg class="lg" viewBox="0 0 48 34" aria-hidden="true"><rect width="48" height="34" rx="10" fill="#e5233f"/><path d="M19 9.5v15l13-7.5z" fill="#fff" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/></svg> Yargı Tube</a>
   <nav class="nv" id="nv" aria-label="Sayfa bölümleri">
-    <a href="#ozellikler">Özellikler</a><a href="#ekran">Görüntüler</a><a href="#uygulamalar">Uygulamalar</a><a href="#kurulum">Kurulum</a><a href="#surum">Sürümler</a><a href="#sss">Sorular</a><a href="#sosyal">Sosyal medya</a>
+    <a href="#ozellikler">Özellikler</a><a href="#ekran">Görüntüler</a><a href="#uygulamalar">Uygulamalar</a><a href="#degerlendirme">Yorumlar</a><a href="#kurulum">Kurulum</a><a href="#surum">Sürümler</a><a href="#sss">Sorular</a><a href="#sosyal">Sosyal medya</a>
   </nav>
   <button class="ic" id="theme" type="button" aria-label="Temayı değiştir">◐</button>
   <button class="btn sm dl hd" type="button">İndir</button>
@@ -164,6 +183,7 @@ header.top .wrap{position:relative;gap:8px}
       <a class="btn ghost" href="#kurulum">Nasıl kurulur?</a>
     </div>
     <p class="cnt" id="cnt" aria-live="polite"></p>
+    <p class="cnt" id="ozet" data-pk="yargitube" style="margin-top:4px"></p>
     <div class="bar" id="bar"><b id="fill"></b></div>
     <div class="pills"><span>Ücretsiz</span><span>Reklamsız</span><span>Sürüm <span id="ver" style="border:0;padding:0"></span></span><span>Android 8.0+</span><span>Android TV</span><span id="size" style="padding:5px 14px"></span></div>
   </div>
@@ -204,6 +224,12 @@ header.top .wrap{position:relative;gap:8px}
       <button class="btn" id="dsend" type="button">Mesaj gönder</button>
     </div>
   </div>
+</section>
+
+<section id="degerlendirme">
+  <h2>Kullanıcılar ne diyor?</h2>
+  <p class="sub">Uygulamayı kullandıysanız Google hesabınızla giriş yapıp puan verebilir, yorum yazabilirsiniz.</p>
+  <div class="card rv" id="puan"></div>
 </section>
 
 <section id="kurulum">
@@ -265,6 +291,7 @@ header.top .wrap{position:relative;gap:8px}
 <dialog id="ad"><button class="ic x" id="adx" type="button" aria-label="Kapat">✕</button>
   <div class="ah"><span class="ai" id="aic"></span><div><h3 id="an"></h3><small id="am"></small></div></div>
   <p id="aa"></p><p class="cnt" id="acnt" style="margin:-6px 0 14px"></p><div class="shots" id="ass"></div>
+  <div class="rv" id="apuan" style="padding:18px 0 4px"></div>
   <button class="btn" id="adl" type="button">APK'yı indir</button></dialog>
 <dialog id="lb"><button class="ic" id="lbx" type="button" aria-label="Kapat">✕</button><img id="lbi" alt="Uygulama ekran görüntüsü"></dialog>
 <div id="toast" role="status" aria-live="polite"></div>
@@ -304,11 +331,25 @@ function say(m){toast.textContent=m;toast.classList.add("on");clearTimeout(tt);t
 const SAYAC_NS="yargih42-apk";
 const sayacUrl=k=>"https://api.counterapi.dev/v1/"+SAYAC_NS+"/"+encodeURIComponent(k);
 const sayiAl=d=>{const n=d&&(d.count??d.value??(d.data&&d.data.up_count));return typeof n==="number"?n:null;};
-const yaz=(el,n)=>{el.innerHTML=n===null?"":(n>0?`<b>${n.toLocaleString("tr-TR")}</b> kişi indirdi`:"İlk indiren siz olun");};
+/* Gösterilen sayı asla düşmez: tarayıcıda görülen en yüksek değer saklanır */
+const yedekOku=k=>{try{return +localStorage.getItem("say:"+k)||0;}catch(e){return 0;}};
+const yedekYaz=(k,n)=>{try{localStorage.setItem("say:"+k,String(n));}catch(e){}};
+const yaz=(el,n,k)=>{
+  if(!el)return;
+  const y=yedekOku(k);if(n===null||n<y)n=y; // sunucu hata verse ya da düşük dönse bile eski sayı kalır
+  if(n>y)yedekYaz(k,n);
+  el.innerHTML=n>0?`<b>${n.toLocaleString("tr-TR")}</b> kişi indirdi`:"İlk indiren siz olun";
+};
+async function getir(url){
+  for(let i=0;i<2;i++){ // bir kez daha dene
+    try{const r=await fetch(url,{cache:"no-store"});if(r.status===404)return 0;if(r.ok)return sayiAl(await r.json());}catch(e){}
+  }
+  return null;
+}
 async function sayacOku(k,el){
   if(!k||!el)return;
-  try{const r=await fetch(sayacUrl(k));if(r.status===404){yaz(el,0);return;}if(!r.ok)throw 0;yaz(el,sayiAl(await r.json()));}
-  catch(e){el.textContent="";}
+  yaz(el,null,k);                 // önce saklı sayıyı hemen göster
+  yaz(el,await getir(sayacUrl(k)),k); // sonra sunucudaki güncel sayıyı
 }
 const sonTik={};
 async function sayacArttir(k,el){
@@ -316,10 +357,8 @@ async function sayacArttir(k,el){
   const t=Date.now();
   if(sonTik[k]&&t-sonTik[k]<4000)return; // art arda çift tıklamayı tek say
   sonTik[k]=t;
-  try{
-    const r=await fetch(sayacUrl(k)+"/up");if(!r.ok)throw 0;
-    if(el)yaz(el,sayiAl(await r.json()));
-  }catch(e){}
+  const n=await getir(sayacUrl(k)+"/up");
+  if(n!==null)yaz(el,n,k);
 }
 sayacOku(APK.sayac,$("cnt"));
 
@@ -385,7 +424,7 @@ const ikon=a=>`background:linear-gradient(135deg,hsl(${a.renk} 70% 45%),hsl(${a.
 if(!APPS.length){$("apps").style.display="none";$("appsub").textContent="Yeni uygulamalarımız çok yakında burada olacak.";}
 APPS.forEach(a=>{
   const b=document.createElement("button");b.type="button";b.className="card app";b.dataset.k=a.sayac;
-  b.innerHTML=`<span class="ai" style="${ikon(a)}">${a.ad[0]}</span><h3>${a.ad}</h3><p>${a.acik}</p><p class="cnt ac" style="margin:10px 0 0;min-height:1.65em"></p><small>Detayları gör ›</small>`;
+  b.innerHTML=`<span class="ai" style="${ikon(a)}">${a.ad[0]}</span><h3>${a.ad}</h3><p>${a.acik}</p><p class="cnt ac" style="margin:10px 0 0;min-height:1.65em"></p><p class="cnt" data-pk="${a.sayac}" style="margin:0"></p><small>Detayları gör ›</small>`;
   sayacOku(a.sayac,b.querySelector(".ac"));
   b.onclick=()=>openApp(a);$("apps").appendChild(b);
 });
@@ -400,6 +439,7 @@ function openApp(a){
     im.onerror=()=>{sh.className="shot empty";sh.innerHTML=f+"<br>dosyasını ekleyin";};
     im.src=f;sh.appendChild(im);box.appendChild(sh);
   });
+  if(window.puanKutu)puanKutu($("apuan"),a.sayac);
   $("acnt").textContent="";sayacOku(a.sayac,$("acnt"));
   $("adl").onclick=()=>download({url:a.apk,dosyaAdi:a.apk,sayac:a.sayac});
   $("ad").showModal();
@@ -457,6 +497,83 @@ $("steps").addEventListener("change",sp);sp();
  ["0.9.0","Beta","Karanlık mod eklendi, açılış hızı artırıldı."],
  ["0.8.0","Test sürümü","Temel oynatıcı ve kategori ekranı hazırlandı."]]
  .forEach(([v,t,d])=>$("log").insertAdjacentHTML("beforeend",`<div><small>${v}</small><h3>${t}</h3><p>${d}</p></div>`));
+</script>
+
+<script>
+/* ============ PUANLAMA (Firebase: Google girişi + Firestore) ============
+   Firebase proje ayarlarından aldığınız değerleri aşağıya yapıştırın. */
+const FIREBASE={apiKey:"AIzaSyCi_L1fvCcVny5LGmQkPWVfzo84MF-pIXs",authDomain:"yargi-tube.firebaseapp.com",projectId:"yargi-tube",appId:"1:769187673226:web:3d1504acca8d97d285a973"};
+(function(){
+const B="https://www.gstatic.com/firebasejs/10.14.1/",ready=!!FIREBASE.apiKey;
+const esc=t=>String(t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const yildiz=n=>{n=Math.round(n);return "★".repeat(n)+"☆".repeat(5-n);};
+const kutular=new Map();let F=null,user=null,oz={};
+async function baslat(){
+  if(F)return F;
+  const [a,au,fs]=await Promise.all([import(B+"firebase-app.js"),import(B+"firebase-auth.js"),import(B+"firebase-firestore.js")]);
+  const app=a.initializeApp(FIREBASE);
+  F={au,fs,auth:au.getAuth(app),db:fs.getFirestore(app)};
+  au.onAuthStateChanged(F.auth,u=>{user=u;kutular.forEach((k,el)=>ciz(el,k));});
+  return F;
+}
+function ozet(key){
+  if(oz[key])return oz[key];
+  return oz[key]=(async()=>{
+    const {fs,db}=await baslat(),col=fs.collection(db,"apps",key,"ratings");
+    const [a,m]=await Promise.all([
+      fs.getAggregateFromServer(col,{n:fs.count(),t:fs.sum("puan")}),
+      fs.getAggregateFromServer(fs.query(col,fs.where("puan",">=",4)),{n:fs.count()})]);
+    const n=a.data().n,t=a.data().t||0;
+    return {n,ort:n?t/n:0,memnun:n?Math.round(m.data().n/n*100):0};
+  })().catch(e=>{delete oz[key];throw e;});
+}
+async function ozetYaz(el){
+  if(!ready)return;
+  try{
+    const o=await ozet(el.dataset.pk);
+    el.textContent=o.n?`★ ${o.ort.toFixed(1).replace(".",",")} · ${o.n} değerlendirme · %${o.memnun} memnun`:"İlk değerlendirmeyi siz yapın";
+  }catch(e){}
+}
+async function ciz(el,key){
+  if(!ready){el.innerHTML='<p class="pm">Puanlama yakında açılacak.</p>';return;}
+  try{
+    await baslat();
+    const {fs,db,au,auth}=F,col=fs.collection(db,"apps",key,"ratings");
+    const [o,liste,benim]=await Promise.all([ozet(key),
+      fs.getDocs(fs.query(col,fs.orderBy("tarih","desc"),fs.limit(20))),
+      user?fs.getDoc(fs.doc(col,user.uid)):null]);
+    const b=benim&&benim.exists()?benim.data():null;
+    let h=`<div class="rs"><div class="rn">${o.n?o.ort.toFixed(1).replace(".",","):"–"}</div><div><div class="st" aria-hidden="true">${yildiz(o.ort)}</div><small>${o.n?o.n+" değerlendirme · %"+o.memnun+" kullanıcı memnun":"Henüz değerlendirme yok"}</small></div></div>`;
+    if(!user){
+      h+='<button class="btn ghost gi" type="button">Google ile giriş yap ve puan ver</button><p><small>Gmail hesabınızla giriş yapmanız yeterli. Her hesap bir kez puan verir, sonradan değiştirebilir.</small></p>';
+    }else{
+      h+=`<div class="pf"><p>${esc(user.displayName||"Kullanıcı")} olarak puan veriyorsunuz. Adınız yorumunuzla birlikte görünür. <button class="lk co" type="button">Çıkış yap</button></p><div class="sg" role="group" aria-label="Puanınız">${[1,2,3,4,5].map(n=>`<button type="button" data-n="${n}" aria-label="${n} yıldız">★</button>`).join("")}</div><textarea rows="3" maxlength="300" placeholder="Yorumunuz (isteğe bağlı)" aria-label="Yorumunuz">${esc(b?b.yorum:"")}</textarea><button class="btn gn" type="button">${b?"Puanımı güncelle":"Gönder"}</button></div>`;
+    }
+    const y=liste.docs.map(d=>d.data()).filter(d=>d.yorum).slice(0,10);
+    if(y.length)h+='<div class="rl">'+y.map(d=>`<div class="ri"><b>${esc(d.ad)}</b><span class="st" aria-label="${d.puan} yıldız">${yildiz(d.puan)}</span><p>${esc(d.yorum)}</p></div>`).join("")+'</div>';
+    el.innerHTML=h;
+    const gi=el.querySelector(".gi");
+    if(gi)gi.onclick=()=>au.signInWithPopup(auth,new au.GoogleAuthProvider()).catch(e=>{if(e&&e.code!=="auth/popup-closed-by-user")say("Giriş yapılamadı. Tekrar deneyin.");});
+    const co=el.querySelector(".co");if(co)co.onclick=()=>au.signOut(auth);
+    if(user){
+      let sec=b?b.puan:0;const bt=[...el.querySelectorAll(".sg button")];
+      const boya=()=>bt.forEach((x,i)=>{x.classList.toggle("on",i<sec);x.setAttribute("aria-pressed",i+1===sec);});
+      bt.forEach(x=>x.onclick=()=>{sec=+x.dataset.n;boya();});boya();
+      el.querySelector(".gn").onclick=async()=>{
+        if(!sec){say("Lütfen önce yıldız seçin.");return;}
+        try{
+          await fs.setDoc(fs.doc(col,user.uid),{uid:user.uid,ad:(user.displayName||"Kullanıcı").slice(0,40),puan:sec,yorum:el.querySelector("textarea").value.trim().slice(0,300),tarih:fs.serverTimestamp()});
+          say("Teşekkürler, değerlendirmeniz kaydedildi.");
+          oz={};kutular.forEach((k,e)=>ciz(e,k));document.querySelectorAll("[data-pk]").forEach(ozetYaz);
+        }catch(e){say("Kaydedilemedi. Biraz sonra tekrar deneyin.");}
+      };
+    }
+  }catch(e){el.innerHTML='<p class="pm">Değerlendirmeler şu an yüklenemedi.</p>';}
+}
+window.puanKutu=(el,key)=>{kutular.set(el,key);el.innerHTML='<p class="pm">Yükleniyor...</p>';ciz(el,key);};
+puanKutu($("puan"),APK.sayac);
+document.querySelectorAll("[data-pk]").forEach(ozetYaz);
+})();
 </script>
 </body>
 </html>
