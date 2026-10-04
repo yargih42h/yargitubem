@@ -371,7 +371,7 @@ function download(a){
   fetch(a.url,{method:"HEAD",cache:"no-store"}).then(r=>{
     if(r.status===404){
       console.error("APK bulunamadı:",a.url);
-      say(a.url+" dosyası bulunamadı. Dosyanın index.html ile aynı klasörde ve adının birebir aynı olduğundan emin olun.");
+      say("APK dosyası bulunamadı.");
       return;
     }
     start(a);
@@ -430,7 +430,7 @@ $("lb").addEventListener("click",e=>{if(e.target===$("lb"))$("lb").close();});
 
 
 const APPS=[
- {ad:"Yargı Müzik",acik:"Müzik çalar uygulaması. Şarkılarınızı kolayca dinleyin.",surum:"1.0.0",boyut:"",renk:280,apk:"YargiMuzik.apk",dosyaAdi:"YargiMuzik.apk",sayac:"yargimuzik",puan:"yargimuzik-v2",ekranlar:["muzik1.jpg","muzik2.jpg","muzik3.jpg","muzik4.jpg"]}
+ {ad:"Yargı Müzik",acik:"Müzik çalar uygulaması. Şarkılarınızı kolayca dinleyin.",surum:"1.0.0",boyut:"",renk:280,apk:"yargimuzik.apk",dosyaAdi:"yargimuzik.apk",sayac:"yargimuzik",puan:"yargimuzik-v2",ekranlar:["muzik1.jpg","muzik2.jpg","muzik3.jpg","muzik4.jpg"]}
 ];
 const ikon=a=>`background:linear-gradient(135deg,hsl(${a.renk} 70% 45%),hsl(${a.renk+40} 70% 30%))`;
 if(!APPS.length){$("apps").style.display="none";$("appsub").textContent="Yeni uygulamalarımız çok yakında burada olacak.";}
