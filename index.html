@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yargı Tube – Android APK İndir</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 48 34%22%3E%3Crect width=%2248%22 height=%2234%22 rx=%2210%22 fill=%22%23e5233f%22/%3E%3Cpath d=%22M19 9.5v15l13-7.5z%22 fill=%22%23fff%22 stroke=%22%23fff%22 stroke-width=%222.5%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08090c;--ink:#f4f1ec;--mute:#9a9fab;--card:rgba(255,255,255,.045);--solid:#14161c;--line:rgba(255,255,255,.1);--red:#ff3b4e;--amber:#ffc857;--glow:rgba(255,59,78,.26);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f7f5f1;--ink:#14161b;--mute:#5d636e;--card:#fff;--solid:#fff;--line:#e2ded6;--red:#e5233f;--amber:#b7791f;--glow:rgba(229,35,63,.16)}}
+:root[data-theme="light"]{--bg:#f7f5f1;--ink:#14161b;--mute:#5d636e;--card:#fff;--solid:#fff;--line:#e2ded6;--red:#e5233f;--amber:#b7791f;--glow:rgba(229,35,63,.16)}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 84px);scroll-behavior:smooth;height:auto}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(65% 45% at 50% 0,var(--glow),transparent);pointer-events:none;z-index:-1}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;margin:0;line-height:1.05}
+a{color:inherit}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;padding:12px 0 0}
+header.top .wrap{display:flex;align-items:center;gap:20px;height:60px;background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:99px;padding:0 10px 0 20px;max-width:1040px}
+.logo{display:flex;align-items:center;gap:10px;font:800 21px "Bricolage Grotesque",system-ui,sans-serif;text-decoration:none;margin-right:auto;letter-spacing:-.01em}
+.logo .lg{width:44px;height:31px}
+header.top a.l{color:var(--mute);text-decoration:none;font-size:15px}
+header.top a.l:hover{color:var(--ink)}
+.ic{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;display:grid;place-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--red);color:#fff;border:0;border-radius:99px;padding:17px 32px;font:700 17px system-ui,sans-serif;cursor:pointer;box-shadow:0 14px 40px -12px var(--red);transition:transform .15s,filter .15s;text-decoration:none}
+.btn:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.btn.sm{padding:11px 22px;font-size:15px;box-shadow:none}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn:focus-visible,.ic:focus-visible,a:focus-visible,summary:focus-visible,.chip:focus-visible,input:focus-visible+span{outline:3px solid var(--amber);outline-offset:3px}
+.hero{display:block;text-align:center;padding:76px 0 0}
+.hero h1{font-size:clamp(46px,8.5vw,96px);font-weight:800;letter-spacing:-.035em;max-width:13ch;margin:0 auto;text-wrap:balance}
+.hero p.lead{font-size:19px;color:var(--mute);max-width:50ch;margin:26px auto 34px}
+.acts,.pills{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.pills{gap:8px;margin-top:28px}
+.pills span{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:5px 15px;font-size:14px;color:var(--mute)}
+.bar{height:6px;border-radius:3px;background:var(--line);margin:20px auto 0;max-width:360px;overflow:hidden;display:none}
+.bar b{display:block;height:100%;width:0;background:var(--amber);transition:width .1s}
+.stage{position:relative;margin-top:60px;height:420px;overflow:hidden;display:flex;justify-content:center;-webkit-mask-image:linear-gradient(#000 65%,transparent);mask-image:linear-gradient(#000 65%,transparent)}
+.phone{position:relative;z-index:1;flex:none;width:290px;aspect-ratio:9/18.6;background:#07080b;border-radius:40px;padding:10px;box-shadow:0 0 0 2px #2b2f39,0 -10px 80px -10px var(--glow)}
+.phone:before{content:"";position:absolute;top:19px;left:50%;width:72px;height:18px;margin-left:-36px;background:#000;border-radius:12px;z-index:3}
+.screen{height:100%;border-radius:31px;background:#12141a;color:#f2efe9;overflow:hidden;display:flex;flex-direction:column}
+.sb{display:flex;align-items:center;gap:8px;padding:30px 14px 8px;font:800 14px "Bricolage Grotesque",system-ui,sans-serif}
+.sb .lg{width:26px;height:18px}
+.chips{display:flex;gap:6px;padding:4px 14px 10px;overflow-x:auto;scrollbar-width:none}
+.chip{flex:none;border:0;background:#222632;color:#c4c9d3;border-radius:99px;padding:5px 12px;font:600 12px system-ui,sans-serif;cursor:pointer}
+.chip[aria-pressed="true"]{background:#f2efe9;color:#12141a}
+.player{margin:0 14px;border-radius:14px;aspect-ratio:16/10;position:relative;overflow:hidden;cursor:pointer;border:0;padding:0;display:block;width:calc(100% - 28px);color:#fff;text-align:left}
+.player .t{position:absolute;left:12px;right:12px;bottom:16px;font-weight:600;font-size:13px;line-height:1.3}
+.player .pp{position:absolute;inset:0;display:grid;place-items:center}
+.player .pp span{width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.5);display:grid;place-items:center;font-size:16px}
+.prog{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.25)}
+.prog i{display:block;height:100%;width:0;background:#ff3b4e}
+.list{padding:12px 14px;display:grid;gap:10px;overflow:hidden}
+.list button{display:flex;gap:10px;align-items:center;border:0;background:none;color:inherit;text-align:left;padding:0;cursor:pointer;font:inherit}
+.list .th{width:60px;height:38px;border-radius:7px;flex:none}
+.list .tx{font-size:12.5px;line-height:1.3}
+.list small{color:#8f96a3;display:block;font-size:11px}
+.fl{position:absolute;z-index:2;background:var(--solid);border:1px solid var(--line);border-radius:99px;padding:8px 18px;font-weight:600;font-size:14px;box-shadow:0 14px 30px -12px rgba(0,0,0,.5);white-space:nowrap}
+.f1{left:calc(50% - 330px);top:70px}.f2{right:calc(50% - 330px);top:160px}.f3{left:calc(50% - 290px);top:270px}
+section{padding:84px 0 0}
+section h2{font-size:clamp(32px,5vw,52px);margin-bottom:14px;letter-spacing:-.025em}
+section .sub{color:var(--mute);max-width:56ch;margin:0 0 36px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:28px;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-3px);border-color:var(--red)}
+.card svg{width:50px;height:50px;padding:12px;stroke:var(--red);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;background:color-mix(in srgb,var(--red) 14%,transparent);border-radius:16px;margin-bottom:18px}
+.card h3{font-size:22px;margin-bottom:8px}
+.card p{margin:0;color:var(--mute);font-size:15px}
+#feat{grid-template-columns:repeat(6,1fr)}
+#feat .card:nth-child(1){grid-column:span 4}#feat .card:nth-child(2){grid-column:span 2}#feat .card:nth-child(3),#feat .card:nth-child(4),#feat .card:nth-child(5){grid-column:span 2}#feat .card:nth-child(6),#feat .card:nth-child(7){grid-column:span 3}
+.soc a{text-decoration:none;color:inherit}.soc h3{margin:0}.soc svg{margin-bottom:10px}
+.shots{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 16px}
+.shot{flex:none;width:220px;aspect-ratio:9/19;border-radius:28px;border:1px solid var(--line);background:var(--card);overflow:hidden;scroll-snap-align:start;cursor:zoom-in;padding:0;color:var(--mute);font:inherit}
+.shot img{width:100%;height:100%;object-fit:cover;display:block}
+.shot.empty{cursor:default;display:grid;place-items:center;padding:18px;text-align:center;font-size:14px;border-style:dashed}
+dialog{border:0;border-radius:18px;padding:0;background:transparent;max-width:92vw;max-height:92vh;overflow:visible}
+dialog::backdrop{background:rgba(0,0,0,.8)}
+dialog img{max-width:92vw;max-height:88vh;border-radius:18px;display:block}
+#lb button{position:absolute;top:-14px;right:-14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.steps{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.steps label{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 20px;cursor:pointer}
+.steps input{position:absolute;opacity:0}
+.steps label>span:first-of-type{flex:none;width:30px;height:30px;border-radius:50%;border:2px solid var(--amber);display:grid;place-items:center;font-weight:700;font-size:14px}
+.steps input:checked+span{background:var(--amber);color:#15171c}
+.steps input:checked~span:last-child{text-decoration:line-through;opacity:.55}
+#sp{font-size:14px;color:var(--mute);margin:14px 0 0}
+.log{border-left:2px solid var(--line);padding-left:22px;display:grid;gap:26px}
+.log h3{font-size:20px}.log small{color:var(--amber);font-weight:600}
+.log p{margin:4px 0 0;color:var(--mute);font-size:15px}
+details{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 22px;margin-bottom:10px;max-width:760px}
+summary{cursor:pointer;font-weight:600}
+details p{margin:10px 0 0;color:var(--mute)}
+.cta{background:var(--card);border:1px solid var(--red);box-shadow:0 0 90px -30px var(--red);color:var(--ink);border-radius:36px;margin:90px 0;padding:72px 24px;text-align:center}
+.cta h2{font-size:clamp(34px,5.5vw,60px);margin-bottom:14px}
+.cta p{margin:0 0 28px;color:var(--mute)}
+footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--mute);font-size:14px}
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:var(--solid);border-top:1px solid var(--line);display:none;align-items:center;gap:12px;transform:translateY(110%);transition:transform .3s}
+.sticky.on{transform:none}
+.sticky b{margin-right:auto;font:800 17px "Bricolage Grotesque",system-ui,sans-serif}
+#toast{position:fixed;left:50%;bottom:calc(88px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:12px 20px;border-radius:10px;opacity:0;transition:.25s;pointer-events:none;max-width:90%;text-align:center;z-index:40}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+@media(max-width:900px){.f1{left:6px}.f2{right:6px}.f3{display:none}}
+@media(max-width:820px){.two{grid-template-columns:1fr;gap:36px}.hero{padding-top:48px}.stage{height:360px}header.top a.l{display:none}header.top .wrap{padding-left:14px}.sticky{display:flex}footer{padding-bottom:90px}#feat .card:nth-child(n){grid-column:1/-1}.cta{border-radius:26px}}
+header.top .wrap{position:relative;gap:8px}
+.nv{display:flex;gap:2px;margin-left:auto;margin-right:8px}
+.nv a{color:var(--mute);text-decoration:none;font-size:15px;padding:8px 14px;border-radius:99px;transition:background .2s,color .2s}
+.nv a:hover{color:var(--ink);background:color-mix(in srgb,var(--ink) 7%,transparent)}
+.nv a.on{color:var(--ink);background:color-mix(in srgb,var(--ink) 11%,transparent)}
+.logo{margin-right:0}
+.prg{position:absolute;left:30px;right:30px;bottom:-1px;height:2px;border-radius:2px;overflow:hidden;pointer-events:none}
+.prg i{display:block;height:100%;width:0;background:var(--red)}
+@media(max-width:1000px){.nv{display:none}.logo{margin-right:auto}header.top .wrap{padding-right:8px}}
+.app{text-align:left;cursor:pointer;color:inherit;font:inherit;width:100%}
+.ai{display:grid;place-items:center;width:56px;height:56px;border-radius:16px;font:800 26px "Bricolage Grotesque",system-ui,sans-serif;color:#fff;flex:none}
+.app .ai{margin-bottom:16px}
+.app small{display:block;color:var(--red);font-weight:600;margin-top:12px}
+#ad{background:var(--solid);color:var(--ink);border:1px solid var(--line);border-radius:28px;padding:28px;width:min(560px,92vw);max-height:90vh;overflow:auto}
+#ad .x{position:absolute;top:14px;right:14px}
+.ah{display:flex;gap:16px;align-items:center;padding-right:48px}
+.ah h3{font-size:24px}.ah small{color:var(--mute)}
+#ad p{color:var(--mute);margin:18px 0}
+#ad .shot{width:130px;border-radius:18px}
+#ad .btn{width:100%;margin-top:6px}
+.soc{grid-template-columns:repeat(3,1fr)}
+.soc a.card{display:flex;align-items:center;gap:14px;padding:20px 22px}
+.soc svg{margin:0;flex:none}
+#sosyal{padding-top:0;padding-bottom:84px}
+.dev{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;margin-top:18px;padding:34px}
+.dev:hover{transform:none;box-shadow:none}
+.dev h3{font-size:26px}
+.dv{display:grid;gap:10px}
+.dv input,.dv textarea{width:100%;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:13px 16px;font:inherit;resize:vertical}
+.dv input:focus-visible,.dv textarea:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.dv small{color:var(--mute);font-size:13px}
+@media(max-width:820px){.dev{grid-template-columns:1fr;padding:24px}}
+@media(max-width:560px){.soc{gap:10px}.soc a.card{flex-direction:column;padding:18px 8px;gap:8px;text-align:center}.soc h3{font-size:15px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="#"><svg class="lg" viewBox="0 0 48 34" aria-hidden="true"><rect width="48" height="34" rx="10" fill="#e5233f"/><path d="M19 9.5v15l13-7.5z" fill="#fff" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/></svg> Yargı Tube</a>
+  <nav class="nv" id="nv" aria-label="Sayfa bölümleri">
+    <a href="#ozellikler">Özellikler</a><a href="#ekran">Görüntüler</a><a href="#kurulum">Kurulum</a><a href="#surum">Sürümler</a><a href="#sss">Sorular</a><a href="#uygulamalar">Uygulamalar</a><a href="#sosyal">Sosyal medya</a>
+  </nav>
+  <button class="ic" id="theme" type="button" aria-label="Temayı değiştir">◐</button>
+  <button class="btn sm dl hd" type="button">İndir</button>
+  <div class="prg" aria-hidden="true"><i id="prg"></i></div>
+</div></header>
+
+<main class="wrap">
+<div class="hero" id="hero">
+  <div>
+    <h1>Sevdiğiniz videolar artık cebinizde.</h1>
+    <p class="lead">Yargı Tube ile izlemek istediğiniz videolar tek uygulamada. APK dosyasını indirin, Android telefonunuza birkaç dokunuşla kurun.</p>
+    <div class="acts">
+      <button class="btn dl" id="dl" type="button"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13m0 0l-5-5m5 5l5-5M4 21h16"/></svg>APK'yı indir</button>
+      <a class="btn ghost" href="#kurulum">Nasıl kurulur?</a>
+    </div>
+    <div class="bar" id="bar"><b id="fill"></b></div>
+    <div class="pills"><span>Ücretsiz</span><span>Reklamsız</span><span>Sürüm <span id="ver" style="border:0;padding:0"></span></span><span>Android 8.0+</span><span>Android TV</span><span id="size" style="padding:5px 14px"></span></div>
+  </div>
+  <div class="stage">
+    <div class="fl f1">Reklamsız</div><div class="fl f2">Çevrimdışı izle</div><div class="fl f3">Ücretsiz</div>
+    <div class="phone"><div class="screen">
+      <div class="sb"><svg class="lg" viewBox="0 0 48 34" aria-hidden="true"><rect width="48" height="34" rx="10" fill="#e5233f"/><path d="M19 9.5v15l13-7.5z" fill="#fff" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/></svg> Yargı Tube</div>
+      <div class="chips" id="chips"></div>
+      <button class="player" id="player" type="button" aria-label="Oynat veya duraklat"><div class="pp"><span id="pp">▶</span></div><div class="t" id="pt"></div><div class="prog"><i id="pg"></i></div></button>
+      <div class="list" id="list"></div>
+    </div></div>
+  </div>
+</div>
+
+<section id="ozellikler">
+  <h2>İzlemek kolay olmalı</h2>
+  <p class="sub">Uygulamayı açtığınızda aradığınız video birkaç dokunuş uzakta.</p>
+  <div class="grid" id="feat"></div>
+</section>
+
+<section id="ekran">
+  <h2>Uygulamadan görüntüler</h2>
+  <p class="sub">Büyütmek için görsele dokunun.</p>
+  <div class="shots" id="shots"></div>
+</section>
+
+<section id="kurulum">
+  <div class="two">
+    <div>
+      <h2>4 adımda kurulum</h2>
+      <p class="sub">Tamamladıkça adımları işaretleyin.</p>
+      <p id="sp"></p>
+    </div>
+    <ol class="steps" id="steps"></ol>
+  </div>
+</section>
+
+<section id="surum">
+  <div class="two">
+    <div><h2>Sürüm notları</h2><p class="sub">Her güncellemede nelerin değiştiğini buradan görebilirsiniz.</p></div>
+    <div class="log" id="log"></div>
+  </div>
+</section>
+
+<section id="sss">
+  <h2>Sık sorulanlar</h2>
+  <p class="sub">Aklınıza takılan bir şey varsa önce buraya bakın.</p>
+  <details><summary>Uygulama ücretli mi?</summary><p>Hayır, indirme ve kullanım ücretsizdir.</p></details>
+  <details><summary>Reklamsız mı?</summary><p>Evet, uygulamada reklam yok. Videoları kesintisiz izleyebilirsiniz.</p></details>
+  <details><summary>Üyelik veya giriş gerekiyor mu?</summary><p>Hayır, uygulamayı açıp doğrudan izlemeye başlayabilirsiniz.</p></details>
+  <details><summary>Verilerim, sesim veya fotoğraflarım alınıyor mu?</summary><p>Hayır. Uygulama ses kaydı yapmaz, fotoğraf çekmez veya galerinizdeki görsellere erişmez. Kişisel bilgilerinizi toplamaz.</p></details>
+  <details><summary>Uygulama kamera, mikrofon veya konum izni istiyor mu?</summary><p>Hayır. Kurulum sırasında bu izinler istenmez. Bir izin isteği görürseniz kurulumu durdurup bize sosyal medyadan haber verin.</p></details>
+  <details><summary>Bilgilerim üçüncü kişilerle paylaşılıyor mu?</summary><p>Hayır. Uygulama hiçbir bilgiyi üçüncü kişi veya şirketlerle paylaşmaz.</p></details>
+  <details><summary>Neden Play Store'da yok?</summary><p>Uygulama doğrudan APK olarak dağıtılıyor. Kurmadan önce dosyayı yalnızca bu sayfadan indirdiğinizden emin olun.</p></details>
+  <details><summary>Kurulum sırasında uyarı çıkıyor, normal mi?</summary><p>APK'lar Play Store dışından kurulduğunda Android bir uyarı gösterir. Dosyanın kaynağına güveniyorsanız izin verip devam edebilirsiniz.</p></details>
+  <details><summary>"Ayrıştırma hatası" veya "Uygulama yüklenmedi" diyor, ne yapmalıyım?</summary><p>Dosya tam inmemiş olabilir, indirmeyi tekrarlayın. Telefonunuzun Android 8.0 veya üzeri olduğunu ve yeterli boş depolama alanı bulunduğunu da kontrol edin.</p></details>
+  <details><summary>Kurulumdan sonra bilinmeyen kaynak iznini kapatmalı mıyım?</summary><p>Evet, kurulum bittikten sonra iznini kapatmanız güvenlik için iyi olur.</p></details>
+  <details><summary>Güncellemeleri nasıl alırım?</summary><p>Yeni sürüm çıktığında bu sayfadaki sürüm numarası değişir. Yeni APK'yı indirip eskisinin üzerine kurmanız yeterli, kayıtlı listeleriniz silinmez.</p></details>
+  <details><summary>Android TV'ye nasıl kurarım?</summary><p>APK dosyasını bilgisayardan USB belleğe kopyalayıp televizyona takın, dosya yöneticisiyle açarak kurun. Kurulumdan sonra uygulama Yargı TV Launcher ile açılır. TV'nizde bilinmeyen kaynaklardan yükleme izni açık olmalı.</p></details>
+  <details><summary>iPhone için var mı?</summary><p>Şu an yalnızca Android sürümü bulunuyor.</p></details>
+  <details><summary>Bir sorun yaşarsam kime ulaşabilirim?</summary><p>Aşağıdaki sosyal medya hesaplarımızdan mesaj atabilirsiniz.</p></details>
+</section>
+
+<section id="uygulamalar">
+  <h2>Diğer uygulamalarımıza göz atın</h2>
+  <p class="sub" id="appsub">Bir uygulamaya dokunun, ekran görüntülerini görün ve APK'sını indirin.</p>
+  <div class="grid" id="apps"></div>
+  <div class="card dev">
+    <div><h3>Yargı Tube için neler geliştirebiliriz?</h3><p>Görmek istediğiniz özellikleri, bulduğunuz hataları ya da yeni uygulama fikirlerinizi yazın. Mesajınız doğrudan geliştiriciye ulaşır.</p></div>
+    <div class="dv">
+      <input id="dn" type="text" placeholder="Adınız" autocomplete="name" aria-label="Adınız">
+      <input id="de" type="email" placeholder="E-posta (dönüş için, isteğe bağlı)" autocomplete="email" aria-label="E-posta">
+      <input id="dh" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+      <textarea id="dm" rows="4" placeholder="Yargı Tube için neler geliştirebiliriz? Önerilerinizi yazın..." aria-label="Mesajınız"></textarea>
+      <button class="btn" id="dsend" type="button">Mesaj gönder</button>
+    </div>
+  </div>
+</section>
+
+
+
+<div class="cta">
+  <h2>Hazırsanız başlayalım.</h2>
+  <p>Ücretsiz, reklamsız, Android 8.0 ve üzeri.</p>
+  <button class="btn dl" type="button">APK'yı indir</button>
+</div>
+<section id="sosyal">
+  <h2>Bizi takip edin</h2>
+  <p class="sub">Duyurular ve yeni sürümler için hesaplarımıza göz atın.</p>
+  <div class="grid soc">
+    <a class="card" aria-label="Instagram sayfamızı aç" href="https://www.instagram.com/hsyn_yarg42" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg><h3>Instagram</h3></a>
+    <a class="card" aria-label="Facebook sayfamızı aç" href="https://www.facebook.com/yarg1998" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M15 3h-2.5A4.5 4.5 0 008 7.5V10H5v4h3v7h4v-7h3l1-4h-4V7.5c0-.3.2-.5.5-.5H15z"/></svg><h3>Facebook</h3></a>
+    <a class="card" aria-label="TikTok sayfamızı aç" href="https://www.tiktok.com/@huseyin.yarg4" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 3v11.5a3.5 3.5 0 11-3.5-3.5M14 3c.3 2.6 2 4.4 5 4.6"/></svg><h3>TikTok</h3></a>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><a class="logo" href="#" style="margin-bottom:12px;display:inline-flex"><svg class="lg" viewBox="0 0 48 34" aria-hidden="true"><rect width="48" height="34" rx="10" fill="#e5233f"/><path d="M19 9.5v15l13-7.5z" fill="#fff" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/></svg> Yargı Tube</a><br>© <span id="yr"></span> Yargı Tube. Tüm hakları saklıdır. &nbsp; <a href="https://www.instagram.com/hsyn_yarg42" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.facebook.com/yarg1998" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.tiktok.com/@yargih42" target="_blank" rel="noopener">TikTok</a></div></footer>
+<div class="sticky" id="sticky"><b>Yargı Tube</b><button class="btn sm dl" type="button">APK'yı indir</button></div>
+<dialog id="ad"><button class="ic x" id="adx" type="button" aria-label="Kapat">✕</button>
+  <div class="ah"><span class="ai" id="aic"></span><div><h3 id="an"></h3><small id="am"></small></div></div>
+  <p id="aa"></p><div class="shots" id="ass"></div>
+  <button class="btn" id="adl" type="button">APK'yı indir</button></dialog>
+<dialog id="lb"><button class="ic" id="lbx" type="button" aria-label="Kapat">✕</button><img id="lbi" alt="Uygulama ekran görüntüsü"></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+
+const APK={url:"YargiTube.apk",dosyaAdi:"YargiTube.apk",surum:"0.29.1",boyut:"18 MB"};
+
+const FORM={url:"https://api.web3forms.com/submit",key:""};
+// -------------------------------------------------------
+const $=id=>document.getElementById(id);
+$("ver").textContent=APK.surum;$("size").textContent=APK.boyut;$("yr").textContent=new Date().getFullYear();
+
+
+const root=document.documentElement;
+$("theme").onclick=()=>{const dark=root.dataset.theme?root.dataset.theme==="dark":!matchMedia("(prefers-color-scheme:light)").matches;root.dataset.theme=dark?"light":"dark";};
+
+
+
+const nv=$("nv");
+const links=[...nv.querySelectorAll("a")];
+const secs=links.map(a=>document.querySelector(a.getAttribute("href")));
+function spy(){
+  const y=innerHeight*0.35;let cur=-1;
+  secs.forEach((el,i)=>{if(el&&el.getBoundingClientRect().top<=y)cur=i;});
+  links.forEach((a,i)=>a.classList.toggle("on",i===cur));
+  const h=document.documentElement.scrollHeight-innerHeight;
+  $("prg").style.width=(h>0?Math.min(100,scrollY/h*100):0)+"%";
+}
+addEventListener("scroll",spy,{passive:true});addEventListener("resize",spy);spy();
+
+/* toast + indirme */
+let tt;const toast=$("toast");
+function say(m){toast.textContent=m;toast.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove("on"),3800);}
+function download(a){
+  a=a||APK;
+  fetch(a.url,{method:"HEAD"}).then(r=>{if(!r.ok)throw 0;start(a);}).catch(()=>say("APK dosyası bulunamadı. Dosyayı sitenin klasörüne "+a.url+" adıyla ekleyin."));
+}
+function start(a){
+  const bar=$("bar"),fill=$("fill");bar.style.display="block";fill.style.width="0";let p=0;
+  const iv=setInterval(()=>{p+=10;fill.style.width=p+"%";if(p>=100)clearInterval(iv);},90);
+  const l=document.createElement("a");l.href=a.url;l.download=a.dosyaAdi||a.url;l.rel="noopener";
+  document.body.appendChild(l);l.click();l.remove();
+  say("İndirme başladı. Bitince İndirilenler klasörüne bakın.");
+}
+document.querySelectorAll(".dl").forEach(b=>b.addEventListener("click",()=>download()));
+
+
+
+new IntersectionObserver(([e])=>$("sticky").classList.toggle("on",!e.isIntersecting&&e.boundingClientRect.top<0),{threshold:0}).observe($("dl"));
+
+const CATS={
+ "Öne çıkan":[["Bugünün öne çıkanları","12:40"],["Haftanın en çok izlenenleri","08:15"],["Sizin için seçtiklerimiz","21:05"]],
+ "Yeni":[["Yeni eklenen videolar","05:30"],["Bu hafta yüklenenler","14:22"],["İlk kez yayında","09:48"]],
+ "Popüler":[["Herkesin izlediği","18:03"],["En çok beğenilenler","11:36"],["Gün boyu trend","07:59"]],
+ "Listem":[["Sonra izle","15:10"],["Kaydettiklerim","10:27"],["Çevrimdışı videolar","22:41"]]
+};
+const state={cat:"Öne çıkan",i:0,pct:30,play:!matchMedia("(prefers-reduced-motion:reduce)").matches};
+const grad=n=>`linear-gradient(135deg,hsl(${(n*47+345)%360} 62% 38%),hsl(${(n*47+25)%360} 55% 16%))`;
+function render(){
+  $("chips").innerHTML=Object.keys(CATS).map(c=>`<button class="chip" type="button" aria-pressed="${c===state.cat}">${c}</button>`).join("");
+  $("chips").querySelectorAll(".chip").forEach(b=>b.onclick=()=>{state.cat=b.textContent;state.i=0;state.pct=0;state.play=true;render();});
+  const L=CATS[state.cat];
+  $("list").innerHTML=L.map((v,n)=>`<button type="button" data-n="${n}"><span class="th" style="background:${grad(n+state.cat.length)}"></span><span class="tx">${v[0]}<small>${v[1]}</small></span></button>`).join("");
+  $("list").querySelectorAll("button").forEach(b=>b.onclick=()=>{state.i=+b.dataset.n;state.pct=0;state.play=true;render();});
+  $("player").style.background=grad(state.i+state.cat.length);
+  $("pt").textContent=L[state.i][0];paint();
+}
+function paint(){$("pg").style.width=state.pct+"%";$("pp").textContent=state.play?"❚❚":"▶";}
+$("player").onclick=()=>{state.play=!state.play;paint();};
+setInterval(()=>{if(state.play){state.pct=state.pct>=100?0:state.pct+1;paint();}},300);
+render();
+
+
+const SHOTS=["ekran1.jpg","ekran2.jpg","ekran3.jpg","ekran4.jpg"];
+SHOTS.forEach((f,n)=>{
+  const b=document.createElement("button");b.type="button";b.className="shot";
+  const im=new Image();im.alt="Uygulama ekran görüntüsü "+(n+1);im.loading="lazy";
+  im.onload=()=>{b.onclick=()=>{$("lbi").src=f;$("lb").showModal();};};
+  im.onerror=()=>{b.className="shot empty";b.textContent=f+" dosyasını ekleyin";b.innerHTML=f+"<br>dosyasını sitenin klasörüne ekleyin";im.remove();};
+  im.src=f;b.appendChild(im);$("shots").appendChild(b);
+});
+$("lbx").onclick=()=>$("lb").close();
+$("lb").addEventListener("click",e=>{if(e.target===$("lb"))$("lb").close();});
+
+
+const APPS=[
+];
+const ikon=a=>`background:linear-gradient(135deg,hsl(${a.renk} 70% 45%),hsl(${a.renk+40} 70% 30%))`;
+if(!APPS.length){$("apps").style.display="none";$("appsub").textContent="Yeni uygulamalarımız çok yakında burada olacak.";}
+APPS.forEach(a=>{
+  const b=document.createElement("button");b.type="button";b.className="card app";
+  b.innerHTML=`<span class="ai" style="${ikon(a)}">${a.ad[0]}</span><h3>${a.ad}</h3><p>${a.acik}</p><small>Detayları gör ›</small>`;
+  b.onclick=()=>openApp(a);$("apps").appendChild(b);
+});
+function openApp(a){
+  const ic=$("aic");ic.textContent=a.ad[0];ic.style.cssText=ikon(a);
+  $("an").textContent=a.ad;$("am").textContent="Sürüm "+a.surum+", "+a.boyut;$("aa").textContent=a.acik;
+  const box=$("ass");box.innerHTML="";
+  a.ekranlar.forEach((f,n)=>{
+    const sh=document.createElement("button");sh.type="button";sh.className="shot";
+    const im=new Image();im.alt=a.ad+" ekran görüntüsü "+(n+1);im.loading="lazy";
+    im.onload=()=>{sh.onclick=()=>{$("lbi").src=f;$("lb").showModal();};};
+    im.onerror=()=>{sh.className="shot empty";sh.innerHTML=f+"<br>dosyasını ekleyin";};
+    im.src=f;sh.appendChild(im);box.appendChild(sh);
+  });
+  $("adl").onclick=()=>download({url:a.apk,dosyaAdi:a.apk});
+  $("ad").showModal();
+}
+$("adx").onclick=()=>$("ad").close();
+$("ad").addEventListener("click",e=>{if(e.target===$("ad"))$("ad").close();});
+
+
+const MAIL=["yargih42","gmail.com"].join("@"),KONU="Yargı Tube için neler geliştirebiliriz?";
+$("dsend").onclick=async()=>{
+  const ad=$("dn").value.trim(),em=$("de").value.trim(),msg=$("dm").value.trim(),btn=$("dsend");
+  if(!msg){say("Lütfen önce mesajınızı yazın.");$("dm").focus();return;}
+  if($("dh").value){say("Mesajınız gönderildi, teşekkürler!");return;}
+  if(!FORM.key){
+    location.href="mailto:"+MAIL+"?subject="+encodeURIComponent(KONU)+"&body="+encodeURIComponent((ad?"Ad: "+ad+"\n\n":"")+msg);
+    say("E-posta uygulamanız açılıyor.");return;
+  }
+  btn.disabled=true;btn.textContent="Gönderiliyor...";
+  try{
+    const r=await fetch(FORM.url,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},
+      body:JSON.stringify({access_key:FORM.key,subject:KONU,from_name:ad||"Yargı Tube ziyaretçisi",name:ad,email:em,message:msg})});
+    const d=await r.json().catch(()=>({}));
+    if(!r.ok||d.success===false)throw 0;
+    say("Mesajınız gönderildi, teşekkürler!");$("dm").value="";$("dn").value="";$("de").value="";
+  }catch(e){say("Mesaj gönderilemedi. Biraz sonra tekrar deneyin.");}
+  btn.disabled=false;btn.textContent="Mesaj gönder";
+};
+
+
+const I={
+ s:'<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>',
+ d:'<path d="M12 4v11m0 0l-4-4m4 4l4-4M5 20h14"/>',
+ l:'<path d="M4 6h12M4 11h12M4 16h7M18 13v6m-3-3h6"/>',
+ f:'<path d="M13 3L5 14h6l-1 7 8-11h-6z"/>',
+ m:'<path d="M20 14a8 8 0 11-10-10 6 6 0 0010 10z"/>',
+ t:'<rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/>',
+ p:'<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>'};
+[["s","Hızlı arama","İstediğiniz videoyu birkaç harf yazarak bulun."],
+ ["t","Android TV desteği","Yargı TV Launcher ile televizyonunuzda da büyük ekranda izleyin."],
+ ["d","Çevrimdışı izleme","Videoları önceden kaydedin, internet olmadan izleyin."],
+ ["l","Oynatma listeleri","Beğendiğiniz videoları kendi listelerinizde toplayın."],
+ ["f","Hafif ve akıcı","Düşük depolama alanına sahip telefonlarda da rahat çalışır."],
+ ["m","Karanlık mod","Gece izlerken gözlerinizi yormayan koyu tema."],
+ ["p","Dikey ve yatay","Telefonu çevirdiğinizde görüntü ekrana uyum sağlar."]]
+ .forEach(([k,t,d])=>$("feat").insertAdjacentHTML("beforeend",`<div class="card"><svg viewBox="0 0 24 24">${I[k]}</svg><h3>${t}</h3><p>${d}</p></div>`));
+
+
+const S=["\"APK'yı indir\" düğmesine dokunun ve dosyanın inmesini bekleyin.","Ayarlar > Güvenlik bölümünden, kullandığınız tarayıcı için \"Bilinmeyen kaynaklardan yükleme\" iznini açın.","İndirilenler klasöründeki Yargı Tube dosyasına dokunun.","\"Yükle\" düğmesine basın, kurulum bitince uygulamayı açın."];
+$("steps").innerHTML=S.map((t,n)=>`<li><label><input type="checkbox"><span>${n+1}</span><span>${t}</span></label></li>`).join("");
+const sp=()=>{const c=document.querySelectorAll("#steps input:checked").length;$("sp").textContent=c===S.length?"Tamamdı, iyi seyirler!":`${c} / ${S.length} adım tamamlandı`;};
+$("steps").addEventListener("change",sp);sp();
+
+
+[["1.0.0","İlk sürüm","Uygulama yayında: arama, listeler ve çevrimdışı izleme."],
+ ["0.9.0","Beta","Karanlık mod eklendi, açılış hızı artırıldı."],
+ ["0.8.0","Test sürümü","Temel oynatıcı ve kategori ekranı hazırlandı."]]
+ .forEach(([v,t,d])=>$("log").insertAdjacentHTML("beforeend",`<div><small>${v}</small><h3>${t}</h3><p>${d}</p></div>`));
+</script>
+</body>
+</html>
