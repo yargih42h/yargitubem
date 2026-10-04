@@ -157,7 +157,11 @@ header.top .wrap{position:relative;gap:8px}
 .pf textarea{width:100%;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:13px 16px;font:inherit;resize:vertical}
 .pf textarea:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
 .rl{display:grid;gap:12px;margin-top:22px;border-top:1px solid var(--line);padding-top:18px}
+.ri{display:flex;gap:12px;align-items:flex-start}
+.av{width:40px;height:40px;border-radius:50%;flex:none;object-fit:cover;background:var(--line);color:var(--mute);display:grid;place-items:center;font-weight:700}
+.pf .me{display:flex;align-items:center;gap:12px}
 .ri p{margin:4px 0 0;color:var(--mute);font-size:15px}
+.pf .tk{color:var(--ink);font-size:17px}
 .ri .st{font-size:14px;margin-left:6px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -507,12 +511,15 @@ const FIREBASE={apiKey:"AIzaSyCi_L1fvCcVny5LGmQkPWVfzo84MF-pIXs",authDomain:"yar
 const B="https://www.gstatic.com/firebasejs/10.14.1/",ready=!!FIREBASE.apiKey;
 const esc=t=>String(t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const yildiz=n=>{n=Math.round(n);return "★".repeat(n)+"☆".repeat(5-n);};
-const kutular=new Map();let F=null,user=null,oz={};
+const fotoOk=u=>typeof u==="string"&&/^https:\/\/lh3\.googleusercontent\.com\//.test(u);
+const av=(foto,ad)=>{const i=esc((ad||"?").trim().charAt(0).toUpperCase()||"?");return fotoOk(foto)?`<img class="av" src="${esc(foto)}" alt="" referrerpolicy="no-referrer" loading="lazy" data-i="${i}">`:`<span class="av">${i}</span>`;};
+const kutular=new Map(),tesk=new Map();let F=null,user=null,oz={};
 async function baslat(){
   if(F)return F;
   const [a,au,fs]=await Promise.all([import(B+"firebase-app.js"),import(B+"firebase-auth.js"),import(B+"firebase-firestore.js")]);
   const app=a.initializeApp(FIREBASE);
   F={au,fs,auth:au.getAuth(app),db:fs.getFirestore(app)};
+  try{await au.setPersistence(F.auth,au.browserLocalPersistence);}catch(e){} // giriş bir kez yapılır, tarayıcı hatırlar
   au.onAuthStateChanged(F.auth,u=>{user=u;kutular.forEach((k,el)=>ciz(el,k));});
   return F;
 }
@@ -545,25 +552,25 @@ async function ciz(el,key){
     const b=benim&&benim.exists()?benim.data():null;
     let h=`<div class="rs"><div class="rn">${o.n?o.ort.toFixed(1).replace(".",","):"–"}</div><div><div class="st" aria-hidden="true">${yildiz(o.ort)}</div><small>${o.n?o.n+" değerlendirme · %"+o.memnun+" kullanıcı memnun":"Henüz değerlendirme yok"}</small></div></div>`;
     if(!user){
-      h+='<button class="btn ghost gi" type="button">Google ile giriş yap ve puan ver</button><p><small>Gmail hesabınızla giriş yapmanız yeterli. Her hesap bir kez puan verir, sonradan değiştirebilir.</small></p>';
+      h+='<button class="btn ghost gi" type="button">Gmail ile giriş yap ve puan ver</button><p><small>Gmail hesabınızla giriş yapmanız yeterli. Her hesap bir kez puan verir, sonradan değiştirebilir.</small></p>';
     }else{
-      h+=`<div class="pf"><p>${esc(user.displayName||"Kullanıcı")} olarak puan veriyorsunuz. Adınız yorumunuzla birlikte görünür. <button class="lk co" type="button">Çıkış yap</button></p><div class="sg" role="group" aria-label="Puanınız">${[1,2,3,4,5].map(n=>`<button type="button" data-n="${n}" aria-label="${n} yıldız">★</button>`).join("")}</div><textarea rows="3" maxlength="300" placeholder="Yorumunuz (isteğe bağlı)" aria-label="Yorumunuz">${esc(b?b.yorum:"")}</textarea><button class="btn gn" type="button">${b?"Puanımı güncelle":"Gönder"}</button></div>`;
+      h+=`<div class="pf">${tesk.has(el)?`<p class="tk"><b>Teşekkürler, ${esc(user.displayName||"Kullanıcı")}!</b> Değerlendirmeniz ${tesk.get(el)}.</p>`:""}<p class="me">${av(user.photoURL,user.displayName)}<span><b>${esc(user.displayName||"Kullanıcı")}</b> olarak puan veriyorsunuz. Adınız ve fotoğrafınız yorumunuzla birlikte görünür.</span></p><div class="sg" role="group" aria-label="Puanınız">${[1,2,3,4,5].map(n=>`<button type="button" data-n="${n}" aria-label="${n} yıldız">★</button>`).join("")}</div><textarea rows="3" maxlength="300" placeholder="Yorumunuz (isteğe bağlı)" aria-label="Yorumunuz">${esc(b?b.yorum:"")}</textarea><button class="btn gn" type="button">${b?"Puanımı güncelle":"Gönder"}</button></div>`;
     }
-    const y=liste.docs.map(d=>d.data()).filter(d=>d.yorum).slice(0,10);
-    if(y.length)h+='<div class="rl">'+y.map(d=>`<div class="ri"><b>${esc(d.ad)}</b><span class="st" aria-label="${d.puan} yıldız">${yildiz(d.puan)}</span><p>${esc(d.yorum)}</p></div>`).join("")+'</div>';
+    const y=liste.docs.map(d=>d.data()).slice(0,10);
+    if(y.length)h+='<div class="rl">'+y.map(d=>`<div class="ri">${av(d.foto,d.ad)}<div><b>${esc(d.ad)}</b><span class="st" aria-label="${d.puan} yıldız">${yildiz(d.puan)}</span>${d.yorum?`<p>${esc(d.yorum)}</p>`:""}</div></div>`).join("")+'</div>';
     el.innerHTML=h;
+    el.querySelectorAll("img.av").forEach(i=>i.onerror=()=>{const t=document.createElement("span");t.className="av";t.textContent=i.dataset.i;i.replaceWith(t);});
     const gi=el.querySelector(".gi");
     if(gi)gi.onclick=()=>au.signInWithPopup(auth,new au.GoogleAuthProvider()).catch(e=>{if(e&&e.code!=="auth/popup-closed-by-user")say("Giriş yapılamadı. Tekrar deneyin.");});
-    const co=el.querySelector(".co");if(co)co.onclick=()=>au.signOut(auth);
-    if(user){
+    if(user&&el.querySelector(".gn")){
       let sec=b?b.puan:0;const bt=[...el.querySelectorAll(".sg button")];
       const boya=()=>bt.forEach((x,i)=>{x.classList.toggle("on",i<sec);x.setAttribute("aria-pressed",i+1===sec);});
       bt.forEach(x=>x.onclick=()=>{sec=+x.dataset.n;boya();});boya();
       el.querySelector(".gn").onclick=async()=>{
         if(!sec){say("Lütfen önce yıldız seçin.");return;}
         try{
-          await fs.setDoc(fs.doc(col,user.uid),{uid:user.uid,ad:(user.displayName||"Kullanıcı").slice(0,40),puan:sec,yorum:el.querySelector("textarea").value.trim().slice(0,300),tarih:fs.serverTimestamp()});
-          say("Teşekkürler, değerlendirmeniz kaydedildi.");
+          await fs.setDoc(fs.doc(col,user.uid),{uid:user.uid,ad:(user.displayName||"Kullanıcı").slice(0,40),foto:fotoOk(user.photoURL)?user.photoURL.slice(0,500):"",puan:sec,yorum:el.querySelector("textarea").value.trim().slice(0,300),tarih:fs.serverTimestamp()});
+          tesk.set(el,b?"güncellendi":"kaydedildi");say("Teşekkürler "+(user.displayName||"")+"!");
           oz={};kutular.forEach((k,e)=>ciz(e,k));document.querySelectorAll("[data-pk]").forEach(ozetYaz);
         }catch(e){say("Kaydedilemedi. Biraz sonra tekrar deneyin.");}
       };
