@@ -209,11 +209,11 @@ header.top .wrap{max-width:1120px}
 </style>
 </head>
 <body>
-<div class="ann" id="ann" hidden><span><a id="annt" href="#uygulamalar"></a></span><button id="annx" type="button" aria-label="Duyuruyu kapat">✕</button></div>
+<div class="ann" id="ann" hidden><span><a id="annt" href="#"></a></span><button id="annx" type="button" aria-label="Duyuruyu kapat">✕</button></div>
 <header class="top"><div class="wrap">
   <a class="logo" href="#"><span class="lg" aria-hidden="true"></span> Yargı Tube</a>
   <nav class="nv" id="nv" aria-label="Sayfa bölümleri">
-    <a href="#ozellikler">Özellikler</a><a href="#ekran">Görüntüler</a><a href="#uygulamalar">Uygulamalar</a><a href="#degerlendirme">Yorumlar</a><a href="#kurulum">Kurulum</a><a href="#surum">Sürümler</a><a href="#sss">Sorular</a><a href="#sosyal">Sosyal medya</a>
+    <a href="#ozellikler">Özellikler</a><a href="#ekran">Görüntüler</a><a href="#degerlendirme">Yorumlar</a><a href="#kurulum">Kurulum</a><a href="#surum">Sürümler</a><a href="#sss">Sorular</a><a href="#sosyal">Sosyal medya</a>
   </nav>
   <button class="ic" id="theme" type="button" aria-label="Temayı değiştir">◐</button>
   <button class="btn sm dl hd" type="button">İndir</button>
@@ -259,10 +259,7 @@ header.top .wrap{max-width:1120px}
   <div class="shots" id="shots"></div>
 </section>
 
-<section id="uygulamalar">
-  <h2>Diğer uygulamalarımıza göz atın</h2>
-  <p class="sub" id="appsub">Bir uygulamaya dokunun, ekran görüntülerini görün ve APK'sını indirin.</p>
-  <div class="grid" id="apps"></div>
+<section id="geri-bildirim">
   <div class="card dev">
     <div><h3>Yargı Tube için neler geliştirebiliriz?</h3><p>Görmek istediğiniz özellikleri, bulduğunuz hataları ya da yeni uygulama fikirlerinizi yazın. Mesajınız doğrudan geliştiriciye ulaşır.</p></div>
     <div class="dv">
@@ -273,6 +270,8 @@ header.top .wrap{max-width:1120px}
       <button class="btn" id="dsend" type="button">Mesaj gönder</button>
     </div>
   </div>
+<p id="appsub" hidden></p><div class="grid" id="apps" hidden></div>
+
 </section>
 
 <section id="degerlendirme">
@@ -334,7 +333,7 @@ header.top .wrap{max-width:1120px}
   <details><summary>Güncellemeleri nasıl alırım?</summary><p>Yeni sürüm çıktığında bu sayfadaki sürüm numarası değişir. Yeni APK'yı indirip eskisinin üzerine kurmanız yeterli, kayıtlı listeleriniz silinmez.</p></details>
   <details><summary>Android TV'ye nasıl kurarım?</summary><p>En kolayı, yukarıdaki "Android TV'ye kurulum" bölümündeki Downloader yöntemidir. Alternatif olarak APK dosyasını bilgisayardan USB belleğe kopyalayıp televizyona takın, dosya yöneticisiyle açarak kurun. Kurulumdan sonra uygulama Yargı TV Launcher ile açılır. TV'nizde bilinmeyen kaynaklardan yükleme izni açık olmalı.</p></details>
   <details><summary>iPhone için var mı?</summary><p>Şu an yalnızca Android sürümü bulunuyor.</p></details>
-  <details><summary>Bir sorun yaşarsam kime ulaşabilirim?</summary><p>Aşağıdaki "Sorun bildir" düğmeleriyle e-posta gönderebilir ya da sosyal medya hesaplarımızdan mesaj atabilirsiniz.</p></details>
+  <details><summary>Bir sorun yaşarsam kime ulaşabilirim?</summary><p>Aşağıdaki "Sorun bildir" düğmesiyle Yargı Tube hakkında e-posta gönderebilir ya da sosyal medya hesaplarımızdan mesaj atabilirsiniz.</p></details>
   <div class="card hata">
     <h3>Bir sorun mu yaşıyorsunuz?</h3>
     <p style="margin:8px 0 0">Düğmeye basınca telefon modeliniz ve Android sürümünüz otomatik yazılmış bir e-posta taslağı açılır. Göndermeden önce istediğinizi silebilirsiniz, sorunu bir iki cümleyle yazmanız yeterli.</p>
@@ -1825,7 +1824,7 @@ window.QRKutu=R("index");window.QRSeviye=R("QRErrorCorrectLevel");})();
 /* DUYURU: sayfanın en üstündeki şerit. Boş bırakırsanız (metin:"") görünmez. */
 /* TV_KISA_ADRES: boş bırakın. Sayfa yayındayken TV bölümünde "siteadresi/tv" otomatik gösterilir (vercel.json gerekir). Başka bir kısa bağlantı kullanmak isterseniz buraya yazın. */
 const TV_KISA_ADRES="";
-const DUYURU={metin:"Yeni: Yargı Müzik yayında. Diğer uygulamalarımıza göz atın.",link:"#uygulamalar"};
+const DUYURU={metin:"Yeni: Yargı Müzik yayında.",link:"#"};
 (function(){
 const sayfaUrl=()=>location.href.split("#")[0].split("?")[0];
 const mutlak=u=>new URL(u,location.href).href; /* APK'nın tam adresi: QR okutulunca dosya doğrudan iner */
@@ -1941,7 +1940,7 @@ window.sorunUrl=async function(ad,sv){
   return "mailto:"+MAIL+"?subject="+encodeURIComponent(ad+" sorun bildirimi")+"&body="+encodeURIComponent(govde);
 };
 const kutu=$("hata");
-[["Yargı Tube",APK.surum]].concat(APPS.map(a=>[a.ad,a.surum])).forEach(([ad,sv])=>{
+[["Yargı Tube",APK.surum]].forEach(([ad,sv])=>{
   const b=document.createElement("button");b.type="button";b.className="btn ghost sm";b.textContent=ad+" için sorun bildir";
   b.onclick=async()=>{location.href=await sorunUrl(ad,sv);};kutu.appendChild(b);
 });
